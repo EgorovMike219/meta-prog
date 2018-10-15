@@ -2,16 +2,16 @@
 
 #include <iostream>
 #include <memory>
-#include <map>
 #include <string>
 #include "IComponentBase.h"
+#include "IMediator.h"
 #include "C.h"
 
 
-// InterfaceMediator (C наследует этот интерфейс)
+// IMediator (C наследует этот интерфейс)
 // IComponentBase (A и B наследуют этот интерфейс)
-template <typename InterfaceMediator>
-class C<Mediator, InterfaceMediator>: public InterfaceMediator {
+template <>
+class C<Mediator>: public IMediator {
 public:
     C(IComponentBase*  a,IComponentBase*  firstComponent, IComponentBase* secondComponent)
     {

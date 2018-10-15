@@ -7,6 +7,5 @@
 class IMediator
 {
 public:
-    virtual ~IMediator() {}
     virtual void notify(IComponentBase* sender, std::string event) = 0;
 };

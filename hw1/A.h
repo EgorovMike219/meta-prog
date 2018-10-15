@@ -3,9 +3,10 @@
 #include <iostream>
 #include "ICaller.h"
 #include "IComponent.h"
+#include "ISubscriber.h"
 
 
-class A: public ICaller, public IComponent
+class A: public ICaller, public IComponent, public ISubscriber
 {
 public:
     A(std::string name="component"):IComponent(name) {}
@@ -23,5 +24,8 @@ public:
     void call(ISubject* b) override {
         std::cout<<"A.call"<<std::endl;
         b->doSomething();
+    }
+    void update(std::string event) override {
+        std::cout<<"A.update event="<<event<<std::endl;
     }
 };

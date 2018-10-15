@@ -12,7 +12,6 @@ public:
     {
         _name = name;
     }
-    virtual ~IComponent() {}
     void setMediator(IMediator* mediator)
     {
         _mediator =

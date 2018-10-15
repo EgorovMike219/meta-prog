@@ -5,7 +5,5 @@
 class IComponentBase
 {
 public:
-    virtual ~IComponentBase() {}
-
     virtual void act() = 0;
 };

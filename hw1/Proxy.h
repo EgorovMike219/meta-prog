@@ -2,22 +2,23 @@
 
 #include <iostream>
 #include <memory>
+#include "ISubject.h"
 #include "C.h"
 
 
-// InterfaceSubject - class B
-template <typename InterfaceSubject>
-class C<Proxy, InterfaceSubject>: public InterfaceSubject {
+// ISubject - class B
+template <>
+class C<Proxy>: public ISubject {
 public:
-    C(InterfaceSubject* b)
+    C(ISubject* b)
     {
         _receiver =
-                std::shared_ptr<InterfaceSubject>(b);
+                std::shared_ptr<ISubject>(b);
     }
     void doSomething() override {
         std::cout<<"C.doSomething"<<std::endl;
         _receiver->doSomething();
     }
 private:
-    std::shared_ptr<InterfaceSubject> _receiver;
+    std::shared_ptr<ISubject> _receiver;
 };

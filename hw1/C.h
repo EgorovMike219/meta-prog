@@ -8,4 +8,4 @@ enum Pattern{
 
 
 class NullType{};
-template <Pattern, typename T, typename Y=NullType> class C;
+template <Pattern, typename T=NullType> class C;

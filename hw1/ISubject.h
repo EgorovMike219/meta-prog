@@ -3,6 +3,5 @@
 class ISubject
 {
 public:
-    virtual ~ISubject() {}
     virtual void doSomething() = 0;
 };

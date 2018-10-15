@@ -6,6 +6,5 @@
 class ICaller
 {
 public:
-    virtual ~ICaller() {}
     virtual void call(ISubject*) = 0;
 };
