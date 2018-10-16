@@ -1,3 +1,5 @@
+#include <utility>
+
 #pragma once
 // интерфейс editor в паттерне Наблюдатель для класса B
 #include <memory>
@@ -9,7 +11,7 @@ class IEditor {
 public:
     IEditor(std::string data, IObserver* observer)
     {
-        _data = data;
+        _data = std::move(data);
         _observer =
                 std::shared_ptr<IObserver>(observer);
 

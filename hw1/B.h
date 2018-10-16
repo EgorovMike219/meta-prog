@@ -1,3 +1,7 @@
+#include <utility>
+
+#include <utility>
+
 #pragma once
 
 #include <iostream>
@@ -11,17 +15,17 @@ class B: public ISubject,
         public IEditor
 {
 public:
-    B(std::string name="component",
+    explicit B(std::string name="component",
             std::string data="data",
             IObserver* observer= nullptr)
             :
-            IComponent(name),
-            IEditor(data, observer)
+            IComponent(std::move(name)),
+            IEditor(std::move(data), observer)
             {}
     void act() override {
         std::cout<<"B.act name="<<_name<<std::endl;
     }
-    void call(std::string event)
+    void call(const std::string &event)
     {
         std::cout<<"B.call event=" <<event<<std::endl;
         if (_mediator)

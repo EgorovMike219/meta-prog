@@ -19,8 +19,7 @@ public:
         _firstComponent = std::shared_ptr<IComponentBase>(firstComponent);
         _secondComponent = std::shared_ptr<IComponentBase>(secondComponent);
     }
-    void notify(IComponentBase* sender, std::string event)
-    {
+    void notify(IComponentBase* sender, std::string event) override {
         if (sender == this->_a.get()) {
             std::cout << "Mediator.notify from a + msg(" << event << ")" << std::endl;
             if (event == "firstComponent") {

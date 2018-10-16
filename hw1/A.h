@@ -1,3 +1,5 @@
+#include <utility>
+
 #pragma once
 
 #include <iostream>
@@ -9,11 +11,11 @@
 class A: public ICaller, public IComponent, public ISubscriber
 {
 public:
-    A(std::string name="component"):IComponent(name) {}
+    explicit A(std::string name="component"):IComponent(std::move(name)) {}
     void act() override {
         std::cout<<"A.act name="<<_name<<std::endl;
     }
-    void call(std::string event)
+    void call(const std::string &event)
     {
         std::cout<<"A.call event=" <<event<<std::endl;
         if (_mediator)

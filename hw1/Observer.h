@@ -26,6 +26,7 @@ public:
     }
     void subscribe(EventType eventType, ISubscriber* subscriber) override{
         _subscribers.insert(std::pair<IObserver::EventType, ISubscriber*>(eventType, subscriber));
+        std::cout<<"Add new subscriber eventType="<<eventType<<std::endl;
     }
     void unsubscribe(EventType eventType, ISubscriber* subscriber) override{
         for (auto it=_subscribers.equal_range(eventType).first;
@@ -38,6 +39,7 @@ public:
                 break;
             }
         }
+        std::cout<<"Delete subscriber eventType="<<eventType<<std::endl;
     }
 private:
     std::multimap<IObserver::EventType, ISubscriber*> _subscribers;

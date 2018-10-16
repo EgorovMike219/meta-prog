@@ -32,5 +32,7 @@ int main() {
     eventManager->subscribe(IObserver::EventType::Update, eventListener2);
     B* editor = new B("editor", "text", eventManager);
     editor->edit("new text");
+    eventManager->unsubscribe(IObserver::EventType::Update, eventListener1);
+    editor->edit("new text 2");
     return 0;
 }

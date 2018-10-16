@@ -7,5 +7,4 @@ enum Pattern{
 };
 
 
-class NullType{};
-template <Pattern, typename T=NullType> class C;
+template <Pattern> class C;

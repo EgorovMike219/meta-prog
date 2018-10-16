@@ -10,13 +10,13 @@
 template <>
 class C<Proxy>: public ISubject {
 public:
-    C(ISubject* b)
+    explicit C(ISubject* b)
     {
         _receiver =
                 std::shared_ptr<ISubject>(b);
     }
     void doSomething() override {
-        std::cout<<"C.doSomething"<<std::endl;
+        std::cout<<"Proxy.doSomething"<<std::endl;
         _receiver->doSomething();
     }
 private:
