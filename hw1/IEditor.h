@@ -4,20 +4,20 @@
 // интерфейс editor в паттерне Наблюдатель для класса B
 #include <memory>
 #include <string>
-#include "IObserver.h"
+#include "IManager.h"
 
 
 class IEditor {
 public:
-    IEditor(std::string data, IObserver* observer)
+    IEditor(std::string data, IManager* observer)
     {
         _data = std::move(data);
         _observer =
-                std::shared_ptr<IObserver>(observer);
+                std::shared_ptr<IManager>(observer);
 
     }
     virtual void edit(std::string) = 0;
 protected:
-    std::shared_ptr<IObserver> _observer;
+    std::shared_ptr<IManager> _observer;
     std::string _data;
 };

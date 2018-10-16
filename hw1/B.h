@@ -17,7 +17,7 @@ class B: public ISubject,
 public:
     explicit B(std::string name="component",
             std::string data="data",
-            IObserver* observer= nullptr)
+            IManager* observer= nullptr)
             :
             IComponent(std::move(name)),
             IEditor(std::move(data), observer)
@@ -39,6 +39,6 @@ public:
     void edit(std::string data) override{
         _data = data;
         std::cout<<"B.edit data="<<data<<std::endl;
-        _observer->notify(IObserver::EventType::Update, data);
+        _observer->notify(IManager::EventType::Update, data);
     }
 };

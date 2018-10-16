@@ -4,19 +4,19 @@
 #include <memory>
 #include <map>
 #include <string>
+#include "IManager.h"
 #include "IObserver.h"
-#include "ISubscriber.h"
 #include "C.h"
 
 
-// IObserver (C наследует этот интерфейс)
-// ISubscriber (A наследуют этот интерфейс)
+// IManager (C наследует этот интерфейс)
+// IObserver (A наследуют этот интерфейс)
 template <>
-class C<Observer>: public IObserver {
+class C<Observer>: public IManager {
 public:
     void notify(EventType eventType, std::string event) override
     {
-        std::cout << "Observer.notify" << std::endl;
+        std::cout << "Manager.notify" << std::endl;
         for (auto it=_subscribers.equal_range(eventType).first;
             it != _subscribers.equal_range(eventType).second;
             ++it)
@@ -24,11 +24,11 @@ public:
             it->second->update(event);
         }
     }
-    void subscribe(EventType eventType, ISubscriber* subscriber) override{
-        _subscribers.insert(std::pair<IObserver::EventType, ISubscriber*>(eventType, subscriber));
+    void subscribe(EventType eventType, IObserver* subscriber) override{
+        _subscribers.insert(std::pair<IManager::EventType, IObserver*>(eventType, subscriber));
         std::cout<<"Add new subscriber eventType="<<eventType<<std::endl;
     }
-    void unsubscribe(EventType eventType, ISubscriber* subscriber) override{
+    void unsubscribe(EventType eventType, IObserver* subscriber) override{
         for (auto it=_subscribers.equal_range(eventType).first;
              it != _subscribers.equal_range(eventType).second;
              ++it)
@@ -42,7 +42,7 @@ public:
         std::cout<<"Delete subscriber eventType="<<eventType<<std::endl;
     }
 private:
-    std::multimap<IObserver::EventType, ISubscriber*> _subscribers;
+    std::multimap<IManager::EventType, IObserver*> _subscribers;
 };
 
 

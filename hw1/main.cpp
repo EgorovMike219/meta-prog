@@ -28,11 +28,11 @@ int main() {
     A* eventListener1 = new A("eventListener1");
     A* eventListener2 = new A("eventListener2");
     auto eventManager = new C<Observer>();
-    eventManager->subscribe(IObserver::EventType::Update, eventListener1);
-    eventManager->subscribe(IObserver::EventType::Update, eventListener2);
+    eventManager->subscribe(IManager::EventType::Update, eventListener1);
+    eventManager->subscribe(IManager::EventType::Update, eventListener2);
     B* editor = new B("editor", "text", eventManager);
     editor->edit("new text");
-    eventManager->unsubscribe(IObserver::EventType::Update, eventListener1);
+    eventManager->unsubscribe(IManager::EventType::Update, eventListener1);
     editor->edit("new text 2");
     return 0;
 }

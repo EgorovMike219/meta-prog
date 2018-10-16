@@ -1,17 +1,9 @@
 #pragma once
-// интерфейс Наблюдателя для класса C
+// Интерфейс для класса A
 #include <string>
-#include "ISubscriber.h"
-
 
 class IObserver
 {
 public:
-    enum EventType
-    {
-        Update
-    };
-    virtual void notify(EventType, std::string event) = 0;
-    virtual void subscribe(EventType, ISubscriber*) = 0;
-    virtual void unsubscribe(EventType, ISubscriber*) = 0;
+    virtual void update(std::string) = 0;
 };

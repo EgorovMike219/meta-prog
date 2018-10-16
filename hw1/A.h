@@ -5,10 +5,10 @@
 #include <iostream>
 #include "ICaller.h"
 #include "IComponent.h"
-#include "ISubscriber.h"
+#include "IObserver.h"
 
 
-class A: public ICaller, public IComponent, public ISubscriber
+class A: public ICaller, public IComponent, public IObserver
 {
 public:
     explicit A(std::string name="component"):IComponent(std::move(name)) {}
