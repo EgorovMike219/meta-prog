@@ -49,7 +49,6 @@ struct Erase<TypeList<Head, Tail ...>, T>
     using result = class Erase<TypeList<Head, class TypeList<Head, Tail ...>::tail >, T>::result;
 };
 
-#include <iostream>
 
 template <class TypeList>
 struct Length {};
@@ -80,8 +79,4 @@ struct Length<NullType> {
     enum {
         value = 0
     };
-    static int f() {
-        std::cout<<"NullType"<<std::endl;
-        return 0;
-    }
 };
