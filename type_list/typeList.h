@@ -52,14 +52,20 @@ struct Erase<TypeList<Head, Tail ...>, T>
 #include <iostream>
 
 template <class TypeList>
-struct Length {
+struct Length {};
+
+template <class Head, class ... Tail>
+struct Length<TypeList<Head, TypeList<Tail ...> > > {
     enum {
-        value = Length<class TypeList::tail>::value + 1
+        value = Length<class TypeList<Head, Tail ...>::tail>::value + 1
     };
-    static int f() {
-        std::cout<<"TypeList| TypeList::tail="<< typeid(class TypeList::tail).name()<<std::endl;
-        return 1 + Length<class TypeList::tail>::f();
-    }
+};
+
+template <class Head, class ... Tail>
+struct Length<TypeList<Head, Tail ...> > {
+        enum {
+            value = Length<TypeList<Head, TypeList<Tail ...> > >::value
+        };
 };
 
 template <>
@@ -67,10 +73,6 @@ struct Length<TypeList<NullType> > {
     enum {
         value = 0
     };
-    static int f() {
-        std::cout<<"TypeList<NullType>"<<std::endl;
-        return 0;
-    }
 };
 
 template <>
